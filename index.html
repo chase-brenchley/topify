@@ -140,7 +140,11 @@
             place.innerHTML = i++
 
             const trackCell = row.insertCell()
-            trackCell.innerHTML = track.track
+            const songLink = document.createElement('a')
+            songLink.href = track.href
+            songLink.text = track.track
+            songLink.target = '_blank'
+            trackCell.appendChild(songLink)
 
             const popularity = row.insertCell()
             popularity.innerHTML = track.popularity

@@ -133,6 +133,7 @@
         .then(results => {
           console.log(results)
           let i = 1
+          const totalPopularity = results.reduce((sum, track) => sum + parseInt(track.popularity), 0)
           results.forEach(track => {
             const row = body.insertRow()
 
@@ -147,7 +148,7 @@
             trackCell.appendChild(songLink)
 
             const popularity = row.insertCell()
-            popularity.innerHTML = track.popularity
+            popularity.innerHTML = Math.floor((track.popularity / totalPopularity) * 100) + '%'
           })
 
           table.hidden = false

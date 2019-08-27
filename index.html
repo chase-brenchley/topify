@@ -23,6 +23,26 @@
       margin-right: 5px;
       max-width: 400px;
     }
+
+    #search-btn {
+      min-width: 81.8px;
+    }
+
+    .artist-select {
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .artist-select > h3 {
+      background-color: rgba(0, 0, 0, .7);
+      position: relative;
+      bottom: -60px;
+    }
+
+    .artist-select:hover {
+      filter: drop-shadow(2px 4px 6px #007bff);
+    }
   </style>
 </head>
 
@@ -80,7 +100,7 @@
           const section = document.getElementById('artist-select')
           results.forEach(artist => {
             const container = document.createElement('button')
-            container.className = 'btn btn-secondary'
+            container.className = 'btn btn-secondary artist-select'
             container.style = 'width: 24%; height: 180px; margin: .25%;'
             container.addEventListener('click', () => {
               section.hidden = true
@@ -95,13 +115,10 @@
             })
 
             if (artist.images.length > 0) {
-              const img = document.createElement('img')
-              img.src = artist.images[0].url
-              img.style = "max-width: 100%; max-height: 135px"
-              container.appendChild(img)
+              container.style.backgroundImage = `url('${artist.images[0].url}')`
             }
 
-            const artistName = document.createElement('h5')
+            const artistName = document.createElement('h3')
             artistName.textContent = artist.name
 
             container.appendChild(artistName)
